@@ -9,10 +9,6 @@
   current = green
   remote = yellow
 
-[core]
-  pager = less -FRSX
-  editor = code --wait
-
 [alias]
   co = checkout
   st = status -sb
@@ -48,17 +44,6 @@
 [help]
   autocorrect = 1
 
-[push]
-  default = simple
-
-[branch "master"]
-  mergeoptions = --no-edit
-
-[pull]
-  rebase = false
-
-[init]
-  defaultBranch = master
 [user]
-	email = jm.orders+lewagon@outlook.com
+	email = jm.orders+github@outlook.com
 	name = Jendrik Mallah
