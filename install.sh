@@ -23,7 +23,7 @@ symlink() {
 
 # For all files `$name` in the present folder except `*.sh`, `README.md`, `settings.json`,
 # and `config`, backup the target file located at `~/.$name` and symlink `$name` to `~/.$name`
-for name in aliases gitconfig irbrc rspec zprofile zshrc; do
+for name in aliases gitconfig irbrc iterm2_shell_integration.zsh p10k.zsh rdbgrc rspec zprofile zshrc; do
   if [ ! -d "$name" ]; then
     target="$HOME/.$name"
     backup $target
@@ -69,7 +69,28 @@ if [[ `uname` =~ "Darwin" ]]; then
   ssh-add --apple-use-keychain ~/.ssh/id_ed25519
 fi
 
+# Install autojump (only for macOS)
+# reference: https://github.com/wting/autojump
+if [[ `uname` =~ "Darwin" ]]; then
+  # Install autojump using Homebrew if not already installed
+  if ! command -v autojump &> /dev/null; then
+    echo "-----> Installing autojump..."
+    brew install autojump
+  fi
+fi
+
+# Setup iTerm2 preferences to be stored in a custom folder (only for macOS)
+if [[ `uname` =~ "Darwin" ]]; then
+  echo "-----> Setting up iTerm2 preferences..."
+
+  # Set iTerm2 preferences to be stored in a custom folder
+  defaults write com.googlecode.iterm2 PrefsCustomFolder -string "$PWD/iterm2"
+
+  # Tell iTerm2 to load preferences from the custom folder
+  defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
+fi
+
 # Refresh the current terminal with the newly installed configuration
 exec zsh
 
-echo "👌 Carry on with git setup!"
+echo "👌 All set!"
