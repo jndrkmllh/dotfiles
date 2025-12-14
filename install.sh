@@ -90,7 +90,7 @@ if [[ `uname` =~ "Darwin" ]]; then
   defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
 fi
 
+echo "👌 All set!"
+
 # Refresh the current terminal with the newly installed configuration
 exec zsh
-
-echo "👌 All set!"

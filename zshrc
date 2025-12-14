@@ -1,6 +1,6 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Uncomment the following line if using direnv, see 2nd part of the fix as well!!.
-# Fix: Initialize direnv for instant prompt (https://github.com/romkatv/powerlevel10k?tab=readme-ov-file#how-do-i-initialize-direnv-when-using-instant-prompt):  
+# Fix: Initialize direnv for instant prompt (https://github.com/romkatv/powerlevel10k?tab=readme-ov-file#how-do-i-initialize-direnv-when-using-instant-prompt):
 # (( ${+commands[direnv]} )) && emulate zsh -c "$(direnv export zsh)"
 
 # Initialization code that may require console input (password prompts, [y/n]
@@ -92,13 +92,11 @@ plugins=(
 	zsh-syntax-highlighting
 	zsh-autosuggestions
 	autojump
+  rbenv
 	# direnv
 )
 
 source $ZSH/oh-my-zsh.sh
-
-# ARGO configuration for Aifinyo
-source ~/.zsh/argo-with-context.sh
 
 # User configuration
 
@@ -125,7 +123,7 @@ export LANG=en_US.UTF-8
 # - $ZSH_CUSTOM/macos.zsh
 # For a full list of active aliases, run `alias`.
 #
-# I am using a .aliases file located in ~/.aliases and load it here 
+# I am using a .aliases file located in ~/.aliases and load it here
 [[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
 
 # Rails and Ruby uses the local `bin` folder to store binstubs.
