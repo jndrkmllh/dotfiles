@@ -1,7 +1,7 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Uncomment the following line if using direnv, see 2nd part of the fix as well!!.
 # Fix: Initialize direnv for instant prompt (https://github.com/romkatv/powerlevel10k?tab=readme-ov-file#how-do-i-initialize-direnv-when-using-instant-prompt):
-# (( ${+commands[direnv]} )) && emulate zsh -c "$(direnv export zsh)"
+(( ${+commands[direnv]} )) && emulate zsh -c "$(direnv export zsh)"
 
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -10,7 +10,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # 2nd part of direnv fix:
-# (( ${+commands[direnv]} )) && emulate zsh -c "$(direnv hook zsh)"
+(( ${+commands[direnv]} )) && emulate zsh -c "$(direnv hook zsh)"
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
@@ -93,7 +93,7 @@ plugins=(
 	zsh-autosuggestions
 	autojump
   rbenv
-	# direnv
+	direnv
 )
 
 source $ZSH/oh-my-zsh.sh

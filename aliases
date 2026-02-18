@@ -8,3 +8,8 @@ alias ohmyzshconfig="nano ~/.oh-my-zsh"
 
 # Quickly run bundle executions
 alias be='bundle exec '
+
+# Quickly open rails credentials with sublime text 
+alias creds_dev='VISUAL="subl --wait" bin/rails credentials:edit --environment development'
+alias creds_staging='VISUAL="subl --wait" bin/rails credentials:edit --environment staging'
+alias creds_prod='VISUAL="subl --wait" bin/rails credentials:edit --environment production'
