@@ -2,9 +2,9 @@
 alias myip="curl https://ipinfo.io/json" # or /ip for plain-text ip
 
 # Settings and Controls
-alias zshconfig="nano ~/.zshrc"
+alias zshconfig="subl ~/.zshrc"
 alias shellreload="source ~/.zshrc" # maybe also try exec zsh
-alias ohmyzshconfig="nano ~/.oh-my-zsh"
+alias ohmyzshconfig="subl ~/.oh-my-zsh"
 
 # Quickly run bundle executions
 alias be='bundle exec '
