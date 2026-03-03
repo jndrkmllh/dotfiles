@@ -23,6 +23,7 @@
         "typeHierarchy": true
     },
     "rubyLsp.featuresConfiguration": {},
+    "rubyLsp.formatter": "rubocop",
     "sorbet.enabled": true,
     "editor.autoIndentOnPaste": true,
     "editor.fontSize": 12,
@@ -30,6 +31,7 @@
         120
     ],
     "editor.tabSize": 2,
+    "editor.formatOnSave": true,
     "workbench.iconTheme": "vscode-great-icons",
     "todo-tree.general.showActivityBarBadge": true,
     "editor.minimap.size": "fit",
@@ -43,4 +45,7 @@
     "github.copilot.nextEditSuggestions.enabled": true,
     "github.copilot.selectedCompletionModel": "",
     "git.confirmSync": false,
+    "[ruby]": {
+        "editor.defaultFormatter": "rubocop.vscode-rubocop"
+    }
 }
