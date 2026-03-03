@@ -1,7 +1,7 @@
 {
+    "workbench.colorTheme": "LAST",
     "containers.containerClient": "com.microsoft.visualstudio.containers.docker",
     "containers.orchestratorClient": "com.microsoft.visualstudio.orchestrators.dockercompose",
-    "workbench.colorTheme": "LAST",
     "rubyLsp.enabledFeatures": {
         "codeActions": true,
         "diagnostics": true,
@@ -32,10 +32,11 @@
     ],
     "editor.tabSize": 2,
     "editor.formatOnSave": true,
-    "workbench.iconTheme": "vscode-great-icons",
-    "todo-tree.general.showActivityBarBadge": true,
     "editor.minimap.size": "fit",
     "editor.minimap.enabled": false,
+    "window.zoomLevel": -1,
+    "workbench.iconTheme": "vscode-great-icons",
+    "todo-tree.general.showActivityBarBadge": true,
     "better-comments.highlightPlainText": true,
     "workbench.productIconTheme": "macos-modern",
     "terminal.external.osxExec": "iTerm.app",
