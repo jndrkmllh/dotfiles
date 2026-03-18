@@ -138,3 +138,6 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 # uncomment the following line if using asdf
 . /opt/homebrew/opt/asdf/libexec/asdf.sh
+
+# Add local bin to PATH (needed for claude code cli)
+export PATH="$HOME/.local/bin:$PATH"
