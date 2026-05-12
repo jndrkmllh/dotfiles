@@ -136,5 +136,8 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# uncomment the following line if using asdf
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
+# asdf (v0.16+ uses binary instead of shell script)
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+
+# Path for binaries, added by claude code
+export PATH="$HOME/.local/bin:$PATH"
