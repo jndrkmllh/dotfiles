@@ -13,6 +13,14 @@
     "font_size": 12.0
   },
   "agent_buffer_font_size": 13.0,
+  // Extensions are not part of this file otherwise, so a fresh machine would
+  // come up without the Ruby language servers configured below.
+  "auto_install_extensions": {
+    "ruby": true,
+    "html": true,
+    "dockerfile": true,
+    "git-firefly": true,
+  },
   "edit_predictions": {
     "provider": "copilot"
   },
