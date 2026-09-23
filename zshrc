@@ -93,6 +93,7 @@ plugins=(
 	zsh-autosuggestions
 	autojump
   asdf
+  rails
 	# direnv
 )
 
@@ -126,6 +127,9 @@ export LANG=en_US.UTF-8
 # I am using a .aliases file located in ~/.aliases and load it here
 [[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
 
+# asdf (v0.16+ uses binary instead of shell script)
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+
 # Rails and Ruby uses the local `bin` folder to store binstubs.
 # So instead of running `bin/rails` like the doc says, just run `rails`
 # Same for `./node_modules/.bin` and nodejs
@@ -135,9 +139,6 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# asdf (v0.16+ uses binary instead of shell script)
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
 # Path for binaries, added by claude code
 export PATH="$HOME/.local/bin:$PATH"

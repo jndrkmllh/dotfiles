@@ -30,6 +30,8 @@ The script should do this: \(ai.prompt)</string>
 	<string>https://api.openai.com/v1/responses</string>
 	<key>BracketedPasteMode</key>
 	<true/>
+	<key>ClaudeCodeWorkgroupUpsellSuppressed</key>
+	<true/>
 	<key>ConvertDosNewlines</key>
 	<true/>
 	<key>Custom Color Presets</key>

@@ -10,6 +10,7 @@ alias ohmyzshconfig="subl ~/.oh-my-zsh"
 alias be='bundle exec '
 
 # Quickly open rails credentials with sublime text 
+alias creds='VISUAL="subl --wait" bin/rails credentials:edit'
 alias creds_dev='VISUAL="subl --wait" bin/rails credentials:edit --environment development'
 alias creds_staging='VISUAL="subl --wait" bin/rails credentials:edit --environment staging'
 alias creds_prod='VISUAL="subl --wait" bin/rails credentials:edit --environment production'
