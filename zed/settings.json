@@ -1,0 +1,112 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "buffer_font_weight": 450.0,
+  "buffer_font_family": ".ZedMono",
+  "markdown_preview": {
+    "font_size": 12.0
+  },
+  "agent_buffer_font_size": 13.0,
+  "edit_predictions": {
+    "provider": "copilot"
+  },
+  "diff_view_style": "unified",
+  "cli_default_open_behavior": "existing_window",
+  "agent_servers": {
+    "claude-acp": {
+      "default_config_options": {
+        "model": "opus[1m]",
+        "mode": "auto"
+      },
+      "type": "registry"
+    }
+  },
+  "terminal": {
+    "font_family": "MesloLGS NF",
+  },
+  "minimap": {
+    "show": "never",
+  },
+  // Share one width across all panels in the right dock, so switching between
+  // the git panel and the project panel does not resize the dock.
+  "resize_all_panels_in_dock": ["left", "right"],
+  "project_panel": {
+    "default_width": 360,
+  },
+  "git_panel": {
+    "default_width": 360,
+  },
+  "file_types": {
+    "dotenv": [".env*"],
+    "keys": ["/config/*.key"],
+  },
+  // Lift text over highlight backgrounds (merge conflict blocks, search hits) to
+  // APCA body-text contrast; the default of 45 leaves comments unreadable there.
+  "minimum_contrast_for_highlights": 75,
+  "wrap_guides": [120],
+  "tab_size": 2,
+  "icon_theme": {
+    "mode": "system",
+    "light": "Zed (Default)",
+    "dark": "Zed (Default)",
+  },
+  "format_on_save": "on",
+  "ui_font_size": 15.0,
+  // Loosen UI spacing so the status bar buttons get larger click targets
+  // without bumping ui_font_size. Still experimental (zed#18078).
+  "unstable.ui_density": "comfortable",
+  "buffer_font_size": 12.0,
+  "theme": {
+    "mode": "dark",
+    "light": "Ayu Light",
+    "dark": "Ayu Mirage",
+  },
+  "base_keymap": "SublimeText",
+  // Ayu Mirage renders comments at #5c6773, which is APCA Lc 19 against the
+  // editor background. Lift them to the theme's own comment.doc grey.
+  "experimental.theme_overrides": {
+    "syntax": {
+      "comment": { "color": "#8b8f8cff" },
+    },
+  },
+  "languages": {
+    "Ruby": {
+      "formatter": "language_server",
+      "language_servers": ["ruby-lsp", "rubocop", "!solargraph"],
+    },
+    // Enable herb and ruby-lsp for *.html.erb files
+    "HTML+ERB": {
+      "language_servers": ["herb", "ruby-lsp"],
+    },
+    // Enable ruby-lsp for *.js.erb files
+    "JS+ERB": {
+      "language_servers": ["ruby-lsp"],
+    },
+    // Enable ruby-lsp for *.yaml.erb files
+    "YAML+ERB": {
+      "language_servers": ["ruby-lsp"],
+    },
+  },
+  "lsp": {
+    "rubocop": {
+      "initialization_options": {
+        "safeAutocorrect": true,
+      },
+    },
+    // Disable hover popovers in YAML (schema descriptions cover the line you
+    // are reading); validation and completion stay on.
+    "yaml-language-server": {
+      "settings": {
+        "yaml": {
+          "hover": false,
+        },
+      },
+    },
+  },
+}

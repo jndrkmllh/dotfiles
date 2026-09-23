@@ -61,6 +61,15 @@ for name in settings.json keybindings.json; do
   symlink "$PWD/$name" "$target"
 done
 
+# Symlink Zed settings and tasks to the present `zed/` folder
+ZED_PATH="$HOME/.config/zed"
+mkdir -p "$ZED_PATH"
+for name in settings.json tasks.json; do
+  target="$ZED_PATH/$name"
+  backup "$target"
+  symlink "$PWD/zed/$name" "$target"
+done
+
 # Symlink SSH config file to the present `config` file for macOS and add SSH passphrase to the keychain
 if [[ `uname` =~ "Darwin" ]]; then
   target="$HOME/.ssh/config"

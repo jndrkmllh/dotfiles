@@ -2,6 +2,7 @@
 - [iterm2](https://iterm2.com/)
 - [oh-my-zsh](http://ohmyz.sh/)
 - [Visual Studio Code](https://code.visualstudio.com/)
+- [Zed](https://zed.dev/)
 - [git](https://git-scm.com/)
 - [asdf version manager](https://asdf-vm.com/)
 
@@ -31,42 +32,47 @@
    brew install --cask visual-studio-code
    ```
 
-6. Install asdf: 
+6. Install Zed: 
+   ```bash
+   brew install --cask zed
+   ```
+
+7. Install asdf: 
    ```bash
    brew install asdf
    ```
 
-7. Install MesloLGS NF Font (recommended for powerlevel10k): 
+8. Install MesloLGS NF Font (recommended for powerlevel10k): 
    ```bash
    brew install --cask font-meslo-lg-nerd-font
    ```
 
-8. Install powerlevel10k theme: 
+9. Install powerlevel10k theme: 
    ```bash
    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
    ```
 
-9. From the home directory `~` create the directories for this repo: 
+10. From the home directory `~` create the directories for this repo: 
    ```bash
    mkdir -p Code/jndrkmllh && cd Code/jndrkmllh
    ```
 
-10. Authorize on Github with HTTPS as protocol: 
+11. Authorize on Github with HTTPS as protocol: 
     ```bash
     gh auth login
     ```
 
-11. Clone the repo: 
+12. Clone the repo: 
     ```bash
     gh repo clone jndrkmllh/dotfiles
     ```
 
-12. Run `install.sh`: 
+13. Run `install.sh`: 
     ```bash
     sh install.sh
     ```
 
-13. Create `~/.gitconfig.local` with this machine's identity (not tracked in the repo,
+14. Create `~/.gitconfig.local` with this machine's identity (not tracked in the repo,
     so work and private machines can use different emails):
     ```bash
     git config --file ~/.gitconfig.local user.email "you@example.com"

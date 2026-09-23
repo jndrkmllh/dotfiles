@@ -1,0 +1,120 @@
+// Project tasks configuration. See https://zed.dev/docs/tasks for documentation.
+//
+// Example:
+[
+  {
+    "label": "Example task",
+    "command": "for i in {1..5}; do echo \"Hello $i/5\"; sleep 1; done",
+    //"args": [],
+    // Env overrides for the command, will be appended to the terminal's environment from the settings.
+    "env": { "foo": "bar" },
+    // Current working directory to spawn the command into, defaults to current project root.
+    //"cwd": "/path/to/working/directory",
+    // Whether to use a new terminal tab or reuse the existing one to spawn the process, defaults to `false`.
+    "use_new_terminal": false,
+    // Whether to allow multiple instances of the same task to be run, or rather wait for the existing ones to finish, defaults to `false`.
+    "allow_concurrent_runs": false,
+    // What to do with the terminal pane and tab, after the command was started:
+    // * `always` — always show the task's pane, and focus the corresponding tab in it (default)
+    // * `no_focus` — always show the task's pane, add the task's tab in it, but don't focus it
+    // * `never` — do not alter focus, but still add/reuse the task's tab in its pane
+    "reveal": "always",
+    // Where to place the task's terminal item after starting the task:
+    // * `dock` — in the terminal dock, "regular" terminal items' place (default)
+    // * `center` — in the central pane group, "main" editor area
+    "reveal_target": "dock",
+    // What to do with the terminal pane and tab, after the command had finished:
+    // * `never` — Do nothing when the command finishes (default)
+    // * `always` — always hide the terminal tab, hide the pane also if it was the last tab in it
+    // * `on_success` — hide the terminal tab on task success only, otherwise behaves similar to `always`
+    "hide": "never",
+    // Which shell to use when running a task inside the terminal.
+    // May take 3 values:
+    // 1. (default) Use the system's default terminal configuration in /etc/passwd
+    //      "shell": "system"
+    // 2. A program:
+    //      "shell": {
+    //        "program": "sh"
+    //      }
+    // 3. A program with arguments:
+    //     "shell": {
+    //         "with_arguments": {
+    //           "program": "/bin/bash",
+    //           "args": ["--login"]
+    //         }
+    //     }
+    "shell": "system",
+    // Whether to show the task line in the output of the spawned task, defaults to `true`.
+    "show_summary": true,
+    // Whether to show the command line in the output of the spawned task, defaults to `true`.
+    "show_command": true,
+    // Which edited buffers to save before running the task:
+    // * `all` — save all edited buffers
+    // * `current` — save currently active buffer only
+    // * `none` — don't save any buffers
+    "save": "none",
+    // Represents the tags for inline runnable indicators, or spawning multiple tasks at once.
+    // "tags": []
+    // Hooks that cause this task to run automatically on certain events:
+    // * `create_worktree` — run this task after creating a new git worktree (e.g. to install dependencies or copy untracked config files into it)
+    // "hooks": ["create_worktree"]
+  },
+  // Runnable: Play-Button neben Testklasse, `test "..." do` und `def test_*`.
+  // Der Filter MUSS in Slashes stehen, sonst vergleicht Minitest per String-Gleichheit
+  // statt per Regexp und findet nichts. Leerzeichen -> Underscore, weil Rails aus
+  // `test "does something"` die Methode `test_does_something` generiert -- die
+  // Ersetzung laeuft per `tr` in der Shell, weil Zed nur `$VAR` und `${VAR:default}`
+  // kennt und bei jedem anderen `${ZED_...}`-Ausdruck den Task kommentarlos verwirft.
+  {
+    "label": "rails test $ZED_RELATIVE_FILE -i /$ZED_CUSTOM_RUBY_TEST_NAME/",
+    "command": "bin/rails test \"$ZED_RELATIVE_FILE\" -i \"/$(echo \"$ZED_CUSTOM_RUBY_TEST_NAME\" | tr ' ' '_')/\"",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "tags": ["ruby-test"],
+  },
+  {
+    "label": "rails test (ganze Datei)",
+    "command": "bin/rails",
+    "args": ["test", "$ZED_RELATIVE_FILE"],
+    "cwd": "$ZED_WORKTREE_ROOT",
+  },
+  {
+    "label": "rails test (alle)",
+    "command": "bin/rails",
+    "args": ["test"],
+    "cwd": "$ZED_WORKTREE_ROOT",
+  },
+  {
+    "label": "rails test:all (inkl. System Tests)",
+    "command": "bin/rails",
+    "args": ["test:all"],
+    "cwd": "$ZED_WORKTREE_ROOT",
+  },
+  // Laeuft automatisch nach dem Anlegen eines Git-Worktrees. Delegiert an das
+  // projekteigene .zed/setup-worktree.sh, damit dieser globale Task in Repos
+  // ohne Setup-Script folgenlos bleibt. Kein `$s`-Zwischenschritt: Zed verwirft
+  // Tasks mit unbekannten Variablen kommentarlos.
+  {
+    "label": "Set up new worktree",
+    "command": "if [ -x \"$ZED_MAIN_GIT_WORKTREE/.zed/setup-worktree.sh\" ]; then \"$ZED_MAIN_GIT_WORKTREE/.zed/setup-worktree.sh\"; else echo \"kein .zed/setup-worktree.sh in diesem Projekt -- uebersprungen\"; fi",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "hooks": ["create_worktree"],
+    "reveal": "always",
+    "reveal_target": "dock",
+  },
+  // Raeumt Datenbanken geloeschter Worktrees ab. Zed bietet keinen Hook fuers
+  // Loeschen/Archivieren, darum manuell per `task: spawn`. Das Script findet
+  // sich ueber git selbst, funktioniert also auch aus einem Worktree heraus,
+  // in dem .zed/ gar nicht existiert.
+  {
+    "label": "Worktree-Datenbanken: verwaiste anzeigen",
+    "command": "gc=$(dirname \"$(git rev-parse --git-common-dir)\")/.zed/gc-worktree-databases.sh; if [ -x \"$gc\" ]; then \"$gc\"; else echo \"kein .zed/gc-worktree-databases.sh in diesem Projekt -- uebersprungen\"; fi",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "reveal": "always",
+  },
+  {
+    "label": "Worktree-Datenbanken: verwaiste loeschen",
+    "command": "gc=$(dirname \"$(git rev-parse --git-common-dir)\")/.zed/gc-worktree-databases.sh; if [ -x \"$gc\" ]; then \"$gc\" --drop; else echo \"kein .zed/gc-worktree-databases.sh in diesem Projekt -- uebersprungen\"; fi",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "reveal": "always",
+  },
+]
