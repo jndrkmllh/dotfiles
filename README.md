@@ -65,3 +65,15 @@
     ```bash
     sh install.sh
     ```
+
+13. Create `~/.gitconfig.local` with this machine's identity (not tracked in the repo,
+    so work and private machines can use different emails):
+    ```bash
+    git config --file ~/.gitconfig.local user.email "you@example.com"
+    ```
+    Optional, for SSH commit signing:
+    ```bash
+    git config --file ~/.gitconfig.local user.signingkey ~/.ssh/id_ed25519.pub
+    git config --file ~/.gitconfig.local gpg.format ssh
+    git config --file ~/.gitconfig.local commit.gpgsign true
+    ```

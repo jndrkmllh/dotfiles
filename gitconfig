@@ -45,5 +45,10 @@
   autocorrect = 1
 
 [user]
-	email = jm.orders+github@outlook.com
 	name = Jendrik Mallah
+
+# Machine-specific identity (email, signing key) lives outside the repo,
+# so work and private machines can commit under different addresses.
+# Included last so it overrides anything above.
+[include]
+	path = ~/.gitconfig.local
