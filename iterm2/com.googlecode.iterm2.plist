@@ -3006,6 +3006,8 @@ The script should do this: \(ai.prompt)</string>
 	<true/>
 	<key>IRMemory</key>
 	<integer>4</integer>
+	<key>NeverBlockSystemShutdown</key>
+	<true/>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
