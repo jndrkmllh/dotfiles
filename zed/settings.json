@@ -13,6 +13,10 @@
     "font_size": 12.0
   },
   "agent_buffer_font_size": 13.0,
+  "agent": {
+    // Send with cmd-enter so plain enter inserts a newline while typing.
+    "use_modifier_to_send": true
+  },
   // Extensions are not part of this file otherwise, so a fresh machine would
   // come up without the Ruby language servers configured below.
   "auto_install_extensions": {
@@ -29,6 +33,8 @@
   "agent_servers": {
     "claude-acp": {
       "default_config_options": {
+        "fast": false,
+        "effort": "high",
         "model": "opus[1m]",
         "mode": "auto"
       },
@@ -48,11 +54,20 @@
     "default_width": 360,
   },
   "git_panel": {
+    "tree_view": false,
     "default_width": 360,
   },
   "file_types": {
     "dotenv": [".env*"],
     "keys": ["/config/*.key"],
+    // Chart templates keep the plain .yaml suffix, so the Helm extension cannot
+    // claim them on its own and yaml-language-server flags every {{ ... }}.
+    "Helm": [
+      "**/templates/**/*.yaml",
+      "**/templates/**/*.yml",
+      "**/templates/**/*.tpl",
+      "**/templates/**/NOTES.txt",
+    ],
   },
   // Lift text over highlight backgrounds (merge conflict blocks, search hits) to
   // APCA body-text contrast; the default of 45 leaves comments unreadable there.
